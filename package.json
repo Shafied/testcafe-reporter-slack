@@ -14,7 +14,9 @@
   "scripts": {
     "test": "gulp test",
     "publish-please": "publish-please",
-    "prepublish": "publish-please guard"
+    "prepublish": "publish-please guard",
+    "prod": "gulp --production",
+    "dev": "gulp watch"
   },
   "keywords": [
     "testcafe",
