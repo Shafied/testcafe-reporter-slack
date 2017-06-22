@@ -46,6 +46,7 @@ module.exports = [
         args:   [
             'Second test in first fixture',
             {
+                // errs: [],
                 errs: makeErrors([
                     {
 
@@ -143,6 +144,7 @@ module.exports = [
         args:   [
             'First test in third fixture',
             {
+                // errs: [],
                 errs: makeErrors([
                     {
                         err: new ActionElementNotFoundError(),
