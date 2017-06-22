@@ -3,7 +3,7 @@ import SlackMessage from './SlackMessage';
 export default function () {
     return {
 
-        noColors: true,
+        noColors: false,
 
         reportTaskStart (startTime, userAgents, testCount) {
             this.slack = new SlackMessage();
@@ -26,7 +26,6 @@ export default function () {
             const title = `${result} ${name}`;
 
             this.slack.addMessage(title);
-            console.log('Ik zit in de report test done');
         },
 
         reportTaskDone (endTime, passed, warnings) {
@@ -42,7 +41,6 @@ export default function () {
 
             this.slack.addMessage(footer)
             this.slack.sendTestReport()
-
         }
     };
 }

@@ -1,2 +1,4 @@
-node_modues
+.idea
+node_modules
 media
+lib

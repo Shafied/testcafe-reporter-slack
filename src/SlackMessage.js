@@ -11,16 +11,16 @@ export default class SlackMessage {
     }
 
     sendTestReport() {
+        console.log(this.getSlackMessage());
         this.slack.webhook({
             channel:  '#testcafe',
             username: 'testcafebot',
-            text: 'blabla' //this.getSlackMessage()
+            text: this.getSlackMessage()
         }, function (err, response) {
             console.log('ik zou iets geslacked meoten hebben');
             console.log(err)
             console.log(response)
         })
-        console.log('ik kom ook nog aan het einde')
     }
 
     getSlackMessage() {

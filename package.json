@@ -1,0 +1,37 @@
+{
+  "name": "testcafe-reporter-k3-reporter",
+  "version": "1.0.0",
+  "description": "k3-reporter TestCafe reporter plugin.",
+  "repository": "https://github.com/shafied/testcafe-reporter-k3-reporter",
+  "author": {
+    "name": "Shafied",
+    "email": "s.kasiemkhan@kifid.nl"
+  },
+  "main": "lib/index",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "test": "gulp test",
+    "publish-please": "publish-please",
+    "prepublish": "publish-please guard"
+  },
+  "keywords": [
+    "testcafe",
+    "reporter",
+    "plugin"
+  ],
+  "devDependencies": {
+    "babel-eslint": "^4.0.10",
+    "callsite-record": "^3.2.0",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^5.2.1",
+    "gulp-eslint": "^1.1.1",
+    "gulp-mocha": "^2.2.0",
+    "normalize-newline": "^1.0.2",
+    "publish-please": "^2.1.4",
+    "read-file-relative": "^1.2.0",
+    "testcafe": "^0.2.0-alpha"
+  }
+}
