@@ -10,17 +10,24 @@ export default class SlackMessage {
         this.message.push(message)
     }
 
-    sendTestReport() {
-        console.log(this.getSlackMessage());
+    sendMessage(message) {
         this.slack.webhook({
             channel:  '#testcafe',
             username: 'testcafebot',
-            text: this.getSlackMessage()
+            text: message
         }, function (err, response) {
-            console.log('ik zou iets geslacked meoten hebben');
-            console.log(err)
-            console.log(response)
+            if(err) {
+                console.log('Unable to send a message to slack')
+                console.log(response)
+            } else {
+                console.log(`The following message is send to slack: \n ${message}`)
+            }
         })
+    }
+
+    sendTestReport() {
+        this.sendMessage(this.getSlackMessage());
+
     }
 
     getSlackMessage() {
