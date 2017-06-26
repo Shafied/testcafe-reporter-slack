@@ -37,5 +37,9 @@
     "read-file-relative": "^1.2.0",
     "slack-node": "^0.1.8",
     "testcafe": "^0.2.0-alpha"
+  },
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "envs": "^0.1.6"
   }
 }
