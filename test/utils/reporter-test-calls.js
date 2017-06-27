@@ -46,8 +46,8 @@ module.exports = [
         args:   [
             'Second test in first fixture',
             {
-                errs: [],
-                /*errs: makeErrors([
+                // errs: [],
+                errs: makeErrors([
                     {
 
                         err: new UncaughtErrorOnPage('Some error', 'http://example.org'),
@@ -68,7 +68,7 @@ module.exports = [
                             testRunState: 'inTest'
                         }
                     }
-                ]),*/
+                ]),
 
                 durationMs:     74000,
                 unstable:       false,
@@ -144,8 +144,8 @@ module.exports = [
         args:   [
             'First test in third fixture',
             {
-                errs: [],
-                /*errs: makeErrors([
+                // errs: [],
+                errs: makeErrors([
                     {
                         err: new ActionElementNotFoundError(),
 
@@ -155,7 +155,7 @@ module.exports = [
                             testRunState: 'inBeforeEach'
                         }
                     }
-                ]),*/
+                ]),
 
                 durationMs:     74000,
                 unstable:       true,
