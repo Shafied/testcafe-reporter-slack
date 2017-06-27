@@ -46,8 +46,8 @@ module.exports = [
         args:   [
             'Second test in first fixture',
             {
-                // errs: [],
-                errs: makeErrors([
+                errs: [],
+                /*errs: makeErrors([
                     {
 
                         err: new UncaughtErrorOnPage('Some error', 'http://example.org'),
@@ -68,7 +68,7 @@ module.exports = [
                             testRunState: 'inTest'
                         }
                     }
-                ]),
+                ]),*/
 
                 durationMs:     74000,
                 unstable:       false,
@@ -144,8 +144,8 @@ module.exports = [
         args:   [
             'First test in third fixture',
             {
-                // errs: [],
-                errs: makeErrors([
+                errs: [],
+                /*errs: makeErrors([
                     {
                         err: new ActionElementNotFoundError(),
 
@@ -155,7 +155,7 @@ module.exports = [
                             testRunState: 'inBeforeEach'
                         }
                     }
-                ]),
+                ]),*/
 
                 durationMs:     74000,
                 unstable:       true,
@@ -167,7 +167,7 @@ module.exports = [
         method: 'reportTaskDone',
         args:   [
             new Date('1970-01-01T00:15:25.000Z'),
-            4,
+            6,
             [
                 'Was unable to take a screenshot due to an error.\n\nReferenceError: someVar is not defined',
                 'Was unable to take a screenshot due to an error.\n\nReferenceError: someOtherVar is not defined',

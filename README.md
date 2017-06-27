@@ -11,9 +11,10 @@ This is the **k3-reporter** reporter plugin for [TestCafe](http://devexpress.git
 Add the below .env config to your test project from which you call the ki-slack-reporter
 
 TestCafe //TODO: To be moved to new test project holistically testing both k3 + mk2...
-    TESTCAFE_SLACK_WEBHOOK=https://hooks.slack.com/services/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
+
+    TESTCAFE_SLACK_WEBHOOK=https://hooks.slack.com/services/*****
     TESTCAFE_SLACK_CHANNEL='#testcafe'
-    TESTCAFE_SLACK_BOT=testcafebot
+    TESTCAFE_SLACK_USERNAME=testcafebot
 
 ## Install
 

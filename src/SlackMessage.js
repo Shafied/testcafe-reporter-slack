@@ -1,12 +1,11 @@
-const envs = require('envs');
 require('dotenv').config();
+const envs = require('envs');
 
 export default class SlackMessage {
     constructor() {
         let slackNode = require('slack-node');
         this.slack = new slackNode();
-        this.slack.setWebhook(envs('TESTCAFE_SLACK_WEBHOOK', 'http://kifid.nl'));
-        console.log('TESTCAFE_SLACK_WEBHOOK', envs('TESTCAFE_SLACK_WEBHOOK', 'http://kifid.nl'));
+        this.slack.setWebhook(envs('TESTCAFE_SLACK_WEBHOOK', 'http://example.com'));
         this.message = [];
         this.errorMessage = [];
     }
