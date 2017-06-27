@@ -1,10 +1,10 @@
 {
-  "name": "testcafe-reporter-k3-reporter",
+  "name": "testcafe-reporter-ki-reporter",
   "version": "1.0.0",
-  "description": "k3-reporter TestCafe reporter plugin.",
+  "description": "Kifid TestCafe reporter plugin.",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:kifid/ki-ui.git"
+    "url": "git@bitbucket.org:kifid/ki-reporter.git"
   },
   "author": {
     "name": "Shafied",

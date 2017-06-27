@@ -1,49 +1,56 @@
-# testcafe-reporter-ki-slack-reporter
+# Kifid TestCafe Reporter 
+###testcafe-reporter-ki-reporter
 
-This is the **k3-reporter** reporter plugin for [TestCafe](http://devexpress.github.io/testcafe).
+This is the **ki-reporter** reporter plugin for [TestCafe](http://devexpress.github.io/testcafe).
 
-<p align="center">
-    <img src="https://raw.github.com/shafied/testcafe-reporter-k3-reporter/master/media/preview.png" alt="preview" />
-</p>
+##Purpose
+Once configured the ki-reporte sends test results to Slack.
 
-## .env configuration:
-
-Add the below .env config to your test project from which you call the ki-slack-reporter
-
-TestCafe //TODO: To be moved to new test project holistically testing both k3 + mk2...
-
-    TESTCAFE_SLACK_WEBHOOK=https://hooks.slack.com/services/*****
-    TESTCAFE_SLACK_CHANNEL='#testcafe'
-    TESTCAFE_SLACK_USERNAME=testcafebot
-
-## Install
+##Setup instructions
+Since this plugin is not published as a TestCafe reporter to npmjs.org. It is important to follow below steps to make it available to your globally installed TestCafe node executable:
+	
+First clone this repository to the machine you would like to run your tests on and then:
 
 ```
-npm install testcafe-reporter-k3-reporter
+$ cd ki-reporter
+$ npm install
+$(sudo) npm link 
 ```
 
-## Usage
+With above steps you make the reporter globally available to TestCafe.
 
-When you run tests from the command line, specify the reporter name by using the `--reporter` option:
+## Testing
+Running TestCafe with ki-reporter.
+
+In order to use this TestCafe reporter plugin it is necessary to define .env variables in your test project, hence the folder from where your call TestCafe.
+
+- cd into your test project.
+- Edit or create the .env file by adding the following ki-reporter required variables:
 
 ```
-testcafe chrome 'path/to/test/file.js' --reporter k3-reporter
+TESTCAFE_SLACK_WEBHOOK=https://hooks.slack.com/services/*****
+TESTCAFE_SLACK_CHANNEL='#testcafe'
+TESTCAFE_SLACK_USERNAME=testcafebot
 ```
 
+Now run your tests from the commmand line with the ki-reporter specified, e.g.:
 
-When you use API, pass the reporter name to the `reporter()` method:
+```
+$ testcafe chrome 'path/to/test/file.js' --reporter ki-reporter
+```
+
+When you use TestCafe API, you can pass the reporter name to the `reporter()` method:
 
 ```js
 testCafe
     .createRunner()
     .src('path/to/test/file.js')
     .browsers('chrome')
-    .reporter('k3-reporter') // <-
+    .reporter('ki-reporter') // <-
     .run();
 ```
 
-## Author
-Shafied 
-
+##Further Documentation
+[TestCafe Reporter Plugins](https://devexpress.github.io/testcafe/documentation/extending-testcafe/reporter-plugin/)
 
 
