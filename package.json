@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-slack",
-  "version": "1.0.0",
+  "version": "0.0.5",
   "description": "TestCafe slack reporter plugin.",
   "repository": {
     "type": "git",
