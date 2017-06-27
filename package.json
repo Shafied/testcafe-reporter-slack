@@ -1,14 +1,14 @@
 {
-  "name": "testcafe-reporter-ki-reporter",
+  "name": "testcafe-reporter-slack",
   "version": "1.0.0",
-  "description": "Kifid TestCafe reporter plugin.",
+  "description": "TestCafe slack reporter plugin.",
   "repository": {
     "type": "git",
-    "url": "git@bitbucket.org:kifid/ki-reporter.git"
+    "url": "git@github.com:Shafied/testcafe-reporter-slack.git"
   },
   "author": {
     "name": "Shafied",
-    "email": "s.kasiemkhan@kifid.nl"
+    "email": "shafiedn@gmail.com"
   },
   "main": "lib/index",
   "files": [
