@@ -44,3 +44,12 @@ testCafe
 
 ##Further Documentation
 [TestCafe Reporter Plugins](https://devexpress.github.io/testcafe/documentation/extending-testcafe/reporter-plugin/)
+
+
+##Customizations
+You can change the default image (emoji) displayed in Slack by adding the following to the .env file:
+
+...
+TESTCAFE_SLACK_TESTPASS=':thumbsup:'
+TESTCAFE_SLACK_TESTPASS=':thumbsdown:'
+...
