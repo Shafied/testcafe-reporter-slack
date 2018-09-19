@@ -1,12 +1,12 @@
 # TestCafe Reporter Slack 
-###testcafe-reporter-slack
+### testcafe-reporter-slack
 
 This is a reporter for [TestCafe](http://devexpress.github.io/testcafe). It sends the output of the test to slack. 
 
-##Purpose
+## Purpose
 Once configured the repoter sends test results to Slack depending on a .env file from the folder the tests are run from
 
-##Setup instructions
+## Setup instructions
 Follow the instructions bellow to configure this plugin. 
 	
 First install this package globaly to the machine you would like to run your tests on and then:
@@ -42,5 +42,5 @@ testCafe
     .run();
 ```
 
-##Further Documentation
+## Further Documentation
 [TestCafe Reporter Plugins](https://devexpress.github.io/testcafe/documentation/extending-testcafe/reporter-plugin/)
