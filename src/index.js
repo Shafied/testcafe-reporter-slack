@@ -1,4 +1,6 @@
 import SlackMessage from './SlackMessage'
+import emojis from 'utils/emojis';
+import { bold, italics } from 'utils/textFormatters';
 
 export default function () {
     return {
@@ -10,7 +12,7 @@ export default function () {
             this.startTime = startTime;
             this.testCount = testCount;
 
-            this.slack.sendMessage(`Starting testcafe ${startTime}. \n Running tests in: ${userAgents}`)
+            this.slack.sendMessage(`${emojis.rocket} ${bold('Starting TestCafe:')} ${startTime}. \n${emojis.computer} Running tests in: ${bold(userAgents)}`)
         },
 
         reportFixtureStart (name, path) {
@@ -20,9 +22,9 @@ export default function () {
 
         reportTestDone (name, testRunInfo) {
             const hasErr = testRunInfo.errs.length > 0;
-            const result = hasErr ? ':heavy_multiplication_x:' : ':heavy_check_mark: ';
+            const result = hasErr ? `${emojis.fire} ` : `${emojis.checkMark} `;
 
-            this.slack.addMessage(`${result} ${name}`);
+            this.slack.addMessage(`${result} ${italics(name)}`);
 
             if (hasErr) {
                 this.renderErrors(testRunInfo.errs);
@@ -39,12 +41,12 @@ export default function () {
             const durationMs  = endTime - this.startTime;
             const durationStr = this.moment
                 .duration(durationMs)
-                .format('h[h] mm[m] ss[s]')
+                .format('h[h] mm[m] ss[s]');
             let footer = passed === this.testCount ?
-                `${this.testCount} passed` :
-                `${this.testCount - passed}/${this.testCount} failed`;
+                `${emojis.checkMark} ${this.testCount} passed` :
+                `${emojis.noEntry} ${this.testCount - passed}/${this.testCount} failed`;
 
-            footer = `\n*${footer}* (Duration: ${durationStr})`;
+            footer = `\n${bold(footer)} \n${emojis.stopWatch} Duration: ${bold(durationStr)}`;
 
             this.slack.addMessage(footer);
             this.slack.sendTestReport(this.testCount - passed);
