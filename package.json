@@ -1,6 +1,6 @@
 {
   "name": "testcafe-reporter-slack",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "TestCafe slack reporter plugin.",
   "repository": {
     "type": "git",
@@ -38,8 +38,8 @@
     "testcafe": "^0.2.0-alpha"
   },
   "dependencies": {
-    "slack-node": "^0.1.8",
-    "dotenv": "^4.0.0",
-    "envs": "^0.1.6"
+    "dotenv": "^7.0.0",
+    "envs": "^0.1.6",
+    "slack-node": "^0.1.8"
   }
 }

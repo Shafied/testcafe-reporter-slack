@@ -1,4 +1,12 @@
+const envs = require('envs');
+require('dotenv').config();
+
 import SlackMessage from './SlackMessage'
+import loggingLevels from './const/LoggingLevels';
+import emojis from './utils/emojis';
+import { bold, italics } from './utils/textFormatters';
+
+const loggingLevel = envs('TESTCAFE_SLACK_LOGGING_LEVEL', loggingLevels.TEST).toUpperCase();
 
 export default function () {
     return {
@@ -6,27 +14,35 @@ export default function () {
         noColors: true,
 
         reportTaskStart (startTime, userAgents, testCount) {
-            this.slack = new SlackMessage();
+            this.slack = new SlackMessage(loggingLevel);
             this.startTime = startTime;
             this.testCount = testCount;
 
-            this.slack.sendMessage(`Starting testcafe ${startTime}. \n Running tests in: ${userAgents}`)
+            const startTimeFormatted = this.moment(this.startTime).format('M/D/YYYY h:mm:ss a');
+
+            this.slack.sendMessage(`${emojis.rocket} ${'Starting TestCafe:'} ${bold(startTimeFormatted)}\n${emojis.computer} Running ${bold(testCount)} tests in: ${bold(userAgents)}\n`)
         },
 
         reportFixtureStart (name, path) {
             this.currentFixtureName = name;
-            this.slack.addMessage(this.currentFixtureName);
+
+            if (loggingLevel === loggingLevels.TEST) this.slack.addMessage(bold(this.currentFixtureName));
         },
 
         reportTestDone (name, testRunInfo) {
-            const hasErr = testRunInfo.errs.length > 0;
-            const result = hasErr ? ':heavy_multiplication_x:' : ':heavy_check_mark: ';
+            const hasErr = !!testRunInfo.errs.length;
+            let message = null;
 
-            this.slack.addMessage(`${result} ${name}`);
-
-            if (hasErr) {
-                this.renderErrors(testRunInfo.errs);
+            if (testRunInfo.skipped) {
+              message = `${emojis.fastForward} ${italics(name)} - ${bold('skipped')}`;
+            } else if (hasErr) {
+              message = `${emojis.fire} ${italics(name)} - ${bold('failed')}`;
+              this.renderErrors(testRunInfo.errs);
+            } else {
+              message = `${emojis.checkMark} ${italics(name)}`
             }
+
+            if (loggingLevel === loggingLevels.TEST) this.slack.addMessage(message);
         },
 
         renderErrors(errors) {
@@ -35,18 +51,28 @@ export default function () {
             })
         },
 
-        reportTaskDone (endTime, passed, warnings) {
+        reportTaskDone (endTime, passed, warnings, result) {
+            const endTimeFormatted = this.moment(endTime).format('M/D/YYYY h:mm:ss a');
             const durationMs  = endTime - this.startTime;
-            const durationStr = this.moment
+            const durationFormatted = this.moment
                 .duration(durationMs)
-                .format('h[h] mm[m] ss[s]')
-            let footer = passed === this.testCount ?
-                `${this.testCount} passed` :
-                `${this.testCount - passed}/${this.testCount} failed`;
+                .format('h[h] mm[m] ss[s]');
 
-            footer = `\n*${footer}* (Duration: ${durationStr})`;
+            const finishedStr = `${emojis.finishFlag} Testing finished at ${bold(endTimeFormatted)}\n`;
+            const durationStr = `${emojis.stopWatch} Duration: ${bold(durationFormatted)}\n`;
+            let summaryStr = '';
 
-            this.slack.addMessage(footer);
+            if (result.skippedCount) summaryStr += `${emojis.fastForward} ${bold(`${result.skippedCount} skipped`)}\n`;
+
+            if (result.failedCount) {
+              summaryStr += `${emojis.noEntry} ${bold(`${result.failedCount}/${this.testCount} failed`)}`
+            } else {
+              summaryStr += `${emojis.checkMark} ${bold(`${result.passedCount}/${this.testCount} passed`)}`
+            }
+
+            const message = `\n\n${finishedStr} ${durationStr} ${summaryStr}`;
+
+            this.slack.addMessage(message);
             this.slack.sendTestReport(this.testCount - passed);
         }
     }
