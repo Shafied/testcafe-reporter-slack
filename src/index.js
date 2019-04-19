@@ -1,12 +1,10 @@
-const envs = require('envs');
-require('dotenv').config();
-
-import SlackMessage from './SlackMessage'
+import config from './config';
+import SlackMessage from './SlackMessage';
 import loggingLevels from './const/LoggingLevels';
 import emojis from './utils/emojis';
 import { bold, italics } from './utils/textFormatters';
 
-const loggingLevel = envs('TESTCAFE_SLACK_LOGGING_LEVEL', loggingLevels.TEST).toUpperCase();
+const { loggingLevel } = config;
 
 export default function () {
     return {
@@ -14,7 +12,7 @@ export default function () {
         noColors: true,
 
         reportTaskStart (startTime, userAgents, testCount) {
-            this.slack = new SlackMessage(loggingLevel);
+            this.slack = new SlackMessage();
             this.startTime = startTime;
             this.testCount = testCount;
 

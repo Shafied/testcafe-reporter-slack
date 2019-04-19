@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "dotenv": "^7.0.0",
-    "envs": "^0.1.6",
     "slack-node": "^0.1.8"
   }
 }

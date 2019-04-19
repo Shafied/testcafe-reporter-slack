@@ -1,36 +1,36 @@
-import loggingLevels from "./const/LoggingLevels";
+import config from './config';
+import loggingLevels from "./const/loggingLevels";
 
-require('dotenv').config();
-const envs = require('envs');
-
-const quietMode = envs('TESTCAFE_SLACK_QUIET_MODE', false);
+const {
+  slackWebhook,
+  slackChannel,
+  slackUsername,
+  loggingLevel,
+  quietMode
+} = config;
 
 export default class SlackMessage {
-    constructor(loggingLevel) {
+    constructor() {
         let slackNode = require('slack-node');
         this.slack = new slackNode();
-        this.slack.setWebhook(envs('TESTCAFE_SLACK_WEBHOOK', 'http://example.com'));
+        this.slack.setWebhook(slackWebhook);
         this.loggingLevel = loggingLevel;
-        this.message = [];
-        this.errorMessage = [];
-    }
-
-    getMessage() {
-      return this.message
+        this.messages = [];
+        this.errorMessages = [];
     }
 
     addMessage(message) {
-        this.message.push(message)
+        this.messages.push(message)
     }
 
     addErrorMessage(message) {
-        this.errorMessage.push(message)
+        this.errorMessages.push(message)
     }
 
     sendMessage(message, slackProperties = null) {
         this.slack.webhook(Object.assign({
-            channel: envs('TESTCAFE_SLACK_CHANNEL', '#testcafe'),
-            username: envs('TESTCAFE_SLACK_BOT', 'testcafebot'),
+            channel: slackChannel,
+            username: slackUsername,
             text: message
         }, slackProperties), function (err, response) {
             if (!quietMode) {
@@ -60,17 +60,17 @@ export default class SlackMessage {
         let message = this.getSlackMessage();
         let errorMessage = this.getErrorMessage();
 
-        if (this.loggingLevel === loggingLevels.TEST && errorMessage.length > 0) {
+        if (errorMessage.length > 0 && this.loggingLevel === loggingLevels.TEST) {
             message = message + "\n\n\n```" + this.getErrorMessage() + '```';
         }
         return message;
     }
 
     getErrorMessage() {
-        return this.errorMessage.join("\n\n\n");
+        return this.errorMessages.join("\n\n\n");
     }
 
     getSlackMessage() {
-        return this.message.join("\n");
+        return this.messages.join("\n");
     }
 }
