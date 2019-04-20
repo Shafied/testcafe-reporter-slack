@@ -11,7 +11,7 @@ Once configured the reporter sends test results to Slack channel, e.g.
 ![Slack report - failed](assets/slack-report-failed.png)
 
 ## Installation :construction:
-	
+
 Install this reporter as your test project dependency:
 
 ```bash
@@ -19,11 +19,11 @@ yarn add testcafe-reporter-slack
 ```
 
 ## Setup instructions :wrench:
-In order to use this TestCafe reporter plugin it is necessary to add it as your reporter to your TestCafe.
+In order to use this TestCafe reporter plugin, it is necessary to add it as your reporter to your TestCafe.
  
 ### Using `.testcaferc.json` config file
 
-Add reporter name (`slack`) to your `reporter` object:
+Add a reporter name (`slack`) to your `reporter` object:
 
 ```json
 {
@@ -73,7 +73,7 @@ Slack reporter have few options which could be configured from both, `.testcafer
 #### Slack Webhook URL :warning:
 
 **This option is required!** Your Slack channel webhook URL generated from Slack API to allow reporter post there.
-It's **not recommended** to pass your `webhookUrl` into config file, in this case, due to sensitive data, it's **better to pass it via global variable** in `.env` file.
+It's **not recommended** to pass your `webhookUrl` into the config file, in this case, due to sensitive data, it's **better to pass it via global variable** in `.env` file.
 * via `.testcaferc.json`
 
 ```json
@@ -138,7 +138,7 @@ TESTCAFE_SLACK_USERNAME=testcafebot
 
 #### Logging level
 
-Choose your report logging level, if you want to see each test with error stacktrace, choose `TEST` (default). Second one is short & condensed which show only number of tests which passed, failed and was skipped - `SUMMARY`.
+Choose your report logging level, if you want to see each test with error stack trace, choose `TEST` (default). The second one is short & condensed which show the only number of tests which passed, failed and was skipped - `SUMMARY`.
 
 * via `.testcaferc.json`
 
@@ -160,7 +160,7 @@ TESTCAFE_SLACK_LOGGING_LEVEL=SUMMARY
 
 #### Quiet mode
 
-Choose if you want to have messages in terminal about sending specific messages to Slack, it's turned off by default.
+Choose if you want to have messages in the terminal about sending specific messages to Slack, it's turned off by default.
 
 * via `.testcaferc.json`
 
