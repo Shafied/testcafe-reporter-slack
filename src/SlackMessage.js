@@ -1,20 +1,12 @@
 import config from './config';
 import loggingLevels from "./const/loggingLevels";
 
-const {
-  slackWebhook,
-  slackChannel,
-  slackUsername,
-  loggingLevel,
-  quietMode
-} = config;
-
 export default class SlackMessage {
     constructor() {
         let slackNode = require('slack-node');
         this.slack = new slackNode();
-        this.slack.setWebhook(slackWebhook);
-        this.loggingLevel = loggingLevel;
+        this.slack.setWebhook(config.webhookUrl);
+        this.loggingLevel = config.loggingLevel;
         this.messages = [];
         this.errorMessages = [];
     }
@@ -29,11 +21,11 @@ export default class SlackMessage {
 
     sendMessage(message, slackProperties = null) {
         this.slack.webhook(Object.assign({
-            channel: slackChannel,
-            username: slackUsername,
+            channel: config.channel,
+            username: config.username,
             text: message
         }, slackProperties), function (err, response) {
-            if (!quietMode) {
+            if (!config.quietMode) {
               if(err) {
                 console.log('Unable to send a message to slack');
                 console.log(response);
