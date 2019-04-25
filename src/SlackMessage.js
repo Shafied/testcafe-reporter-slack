@@ -1,5 +1,5 @@
 import config from './config';
-import loggingLevels from "./const/loggingLevels";
+import loggingLevels from "./const/LoggingLevels";
 
 export default class SlackMessage {
   constructor() {

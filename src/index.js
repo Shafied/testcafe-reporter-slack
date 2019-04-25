@@ -1,10 +1,10 @@
 import config from './config';
 import SlackMessage from './SlackMessage';
-import loggingLevels from './const/LoggingLevels';
+import LoggingLevels from './const/LoggingLevels';
 import emojis from './utils/emojis';
 import { bold, italics } from './utils/textFormatters';
 
-const {loggingLevel} = config;
+const { loggingLevel } = config;
 
 export default function () {
   return {
@@ -24,7 +24,7 @@ export default function () {
     reportFixtureStart(name, path) {
       this.currentFixtureName = name;
 
-      if (loggingLevel === loggingLevels.TEST) this.slack.addMessage(bold(this.currentFixtureName));
+      if (loggingLevel === LoggingLevels.TEST) this.slack.addMessage(bold(this.currentFixtureName));
     },
 
     reportTestDone(name, testRunInfo) {
@@ -40,7 +40,7 @@ export default function () {
         message = `${emojis.checkMark} ${italics(name)}`
       }
 
-      if (loggingLevel === loggingLevels.TEST) this.slack.addMessage(message);
+      if (loggingLevel === LoggingLevels.TEST) this.slack.addMessage(message);
     },
 
     renderErrors(errors) {

@@ -5,13 +5,13 @@ import {
   isFileExists,
   readFile
 } from './utils/fileHelpers';
-import loggingLevels from './const/loggingLevels';
+import LoggingLevels from './const/LoggingLevels';
 
 const defaultConfig = {
   webhookUrl: process.env.TESTCAFE_SLACK_WEBHOOK || 'https://hooks.slack.com/services/*****',
   channel: process.env.TESTCAFE_SLACK_CHANNEL || '#testcafe',
   username: process.env.TESTCAFE_SLACK_USERNAME || 'testcafebot',
-  loggingLevel: process.env.TESTCAFE_SLACK_LOGGING_LEVEL || loggingLevels.TEST,
+  loggingLevel: process.env.TESTCAFE_SLACK_LOGGING_LEVEL || LoggingLevels.TEST,
   quietMode: process.env.TESTCAFE_SLACK_QUIET_MODE || false
 };
 
