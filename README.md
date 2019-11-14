@@ -1,5 +1,5 @@
 # DEPRECATED
-I don't maintain this repo. Just for and alter it
+I don't maintain this repo (anymore). Just fork and alter it
 
 # TestCafe Reporter Slack 
 ### testcafe-reporter-slack
