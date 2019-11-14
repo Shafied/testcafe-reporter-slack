@@ -183,5 +183,7 @@ Choose if you want to have messages in the terminal about sending specific messa
 TESTCAFE_SLACK_QUIET_MODE=true
 ```
 
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 ## Further Documentation :books:
 [TestCafe Reporter Plugins](https://devexpress.github.io/testcafe/documentation/extending-testcafe/reporter-plugin/)
