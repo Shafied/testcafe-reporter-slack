@@ -1,3 +1,6 @@
+# DEPRECATED
+I don't maintain this repo. Just for and alter it
+
 # TestCafe Reporter Slack 
 ### testcafe-reporter-slack
 
